@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('assets/datatables/datatables.bundle.css')}}">
 @endsection
 
-@section('title', 'All Students')
+@section('title', 'All Users')
 
 @section('content')
     <div class="row">
@@ -16,12 +16,12 @@
                             <span class="card-icon">
                                 <i class="flaticon-interface-7 text-primary"></i>
                             </span>
-                            <h3 class="card-label">Students</h3>
+                            <h3 class="card-label">Users</h3>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    @include('student.partials._list')
+                    @include('user.partials._list')
                 </div>
             </div>
         </div>
@@ -29,8 +29,8 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/student/datatable.js') }}"></script>
+    <script src="{{ asset('js/user/datatable.js') }}"></script>
     <script>
-        initStudentDataTable("{{ route('student.getStudents')}}");
+        initUserDataTable("{{ route('user.getUsers')}}");
     </script>
 @endsection

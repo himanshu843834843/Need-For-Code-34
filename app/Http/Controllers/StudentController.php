@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Actions\StudentAction;
+use App\Http\Actions\TeacherAction;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function __construct(StudentAction $studentAction)
+    {
+        $this->studentAction = $studentAction;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        return view('student.index');
     }
 
     /**
@@ -80,5 +87,16 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getStudentsJson(Request $request): JsonResponse
+    {
+        try {
+            $data = $this->studentAction->getStudents($request->search['value'], $request->order, $request->start, $request->length);
+        } catch (\Exception $ex) {
+            dd($ex);
+            return response()->json(['message' => 'Something Went Wrong'], 500);
+        }
+        return $data;
     }
 }

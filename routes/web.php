@@ -64,3 +64,10 @@ Route::get('/login', function () {
 Route::resource('/teacher',\App\Http\Controllers\TeacherController::class);
 Route::post('/teacher/ajax',[\App\Http\Controllers\TeacherController::class,'getTeachersJson'])->name('teacher.getTeachers');
 
+Route::resource('/students',\App\Http\Controllers\StudentController::class);
+Route::post('/student/ajax',[\App\Http\Controllers\StudentController::class,'getStudentsJson'])->name('student.getStudents');
+Route::resource('/users',\App\Http\Controllers\UserController::class);
+Route::post('/user/ajax',[\App\Http\Controllers\UserController::class,'getUsersJson'])->name('user.getUsers');
+Route::get('/users/{user}/approveTeacher',[\App\Http\Controllers\UserController::class,'approveUserAsTeacher'])->name('user.approveTeacher');
+Route::get('/users/{user}/approveStudent',[\App\Http\Controllers\UserController::class,'approveUserAsStudent'])->name('user.approveStudent');
+

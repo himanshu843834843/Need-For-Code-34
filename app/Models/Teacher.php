@@ -11,6 +11,7 @@ class Teacher extends Model
 {
     use HasFactory, TeacherScopes;
 
+    protected $fillable = ['user_id','status'];
     protected $table = "teacher";
     public function isActive(){
         return ($this->status == BaseConstants::ACTIVE);
